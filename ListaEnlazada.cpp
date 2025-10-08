@@ -19,3 +19,10 @@ void ListaEnlazada::CrearNumeros(string IP){
     stringstream ss(IP);
     ss>>Num1>>Num2>>Num3>>Num4>>Num5; 
 }
+
+string ListaEnlazada::RegresarTodo(){
+    string espacio {" "};
+    return Mes + espacio + Dia + Hora + IP + Resto;
+}
+
+

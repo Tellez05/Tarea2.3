@@ -11,4 +11,6 @@ class MyLinkedlist{
     void Mergesort(int inicio, int final); //La recursiva
     void Mezcla(int inicio, int final, int central); 
     void Insert(string linea);
+    string RegresarTodo(); 
+    void DeleteFirst(); 
 };

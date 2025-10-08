@@ -11,8 +11,8 @@ class ListaEnlazada{
     private:
     int Num1, Num2, Num3, Num4, Num5;
     string Mes, Dia, Hora, IP, Resto;  
-    ListaEnlazada* Next; 
     public: 
+    ListaEnlazada* Next; 
     //N(1)
     ListaEnlazada(string Lista, ListaEnlazada* next);
     //N(1)
@@ -21,5 +21,7 @@ class ListaEnlazada{
     void CrearVariables(string linea);
     //N(1)
     void CrearNumeros(string linea); 
+    //N(1)
+    string RegresarTodo(); 
 };
 

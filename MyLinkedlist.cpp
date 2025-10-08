@@ -1,8 +1,19 @@
 #include "MyLinkedlist.h"
-
+//N(1)
 MyLinkedlist::MyLinkedlist(){
     this->Head=this->Tail = nullptr; 
 }
+//N(1)
+void MyLinkedlist::DeleteFirst(){
+    ListaEnlazada* temp = Head;
+    this->Head = this->Head->Next;  
+    delete temp; 
+}
+
+string MyLinkedlist::RegresarTodo(){
+    return Head->RegresarTodo(); 
+}
+//N(1)
 void MyLinkedlist::Insert(string linea){
     ListaEnlazada* Nuevo = new ListaEnlazada(linea, this->Head);
     Head = Nuevo; 
@@ -11,6 +22,7 @@ void MyLinkedlist::Insert(string linea){
         Tail= Nuevo; 
     }
 }
+
 void MyLinkedlist::Mezcla(int inicio, int final, int central){
     /*
     Lo que haremos en esta es lo mismo que merge pero no crearemos una lista dinamica, si no que
@@ -18,6 +30,7 @@ void MyLinkedlist::Mezcla(int inicio, int final, int central){
     como un merge normal
     */
 }   
+
 void MyLinkedlist::Mergesort(){
     Mergesort(0, this->Size-1); 
 }
