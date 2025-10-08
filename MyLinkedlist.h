@@ -1,10 +1,11 @@
+#pragma once 
 #include "ListaEnlazada.h"
 
 class MyLinkedlist{
     private: 
+    public: 
     ListaEnlazada* Head; 
     ListaEnlazada* Tail; 
-    public: 
     int Size {0}; 
     MyLinkedlist(); 
     void Mergesort(); //El primero que manda a llamar
