@@ -6,11 +6,14 @@
 
 int main(){
     int contador {0}; 
-    MyLinkedlist* Lista;
+    MyLinkedlist* Lista = new MyLinkedlist();
+    CargarDocumento(Lista);
     Lista->Mergesort();  
+    cout<<Lista->Size; 
     EntregarDocumento(Lista); 
-    do{
-        Menu(Lista, contador); 
-    }while(Menu != false); 
+    bool V {true};
+    while(V == true){
+        V = Menu(Lista, contador);
+    }
     return 0; 
 }

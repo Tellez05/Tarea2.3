@@ -14,4 +14,5 @@ class MyLinkedlist{
     void Insert(string linea);
     string RegresarTodo(); 
     void DeleteFirst(); 
+    bool isEmpty(); 
 };

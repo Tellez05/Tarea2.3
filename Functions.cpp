@@ -1,5 +1,6 @@
 #include "Functions.h"
 
+//O(n)
 void CargarDocumento(MyLinkedlist* &Lista){
     ifstream archivo("bitacora.txt"); 
     string linea; 
@@ -9,13 +10,14 @@ void CargarDocumento(MyLinkedlist* &Lista){
     }
 }
 
+//O(1)
 int SacarPrimerNumero(string linea){
     stringstream ss(linea);
     int numero; 
     ss>> numero; 
     return numero; 
-
 }
+
 //Agregar en las verificaciones los demas numeros
 void EntregarDocumentoBusq(MyLinkedlist* Lista, string BusquedaInicial, string BusquedaFinal, string Nombre){
     ListaEnlazada* current = Lista->Head; 
@@ -29,30 +31,36 @@ void EntregarDocumentoBusq(MyLinkedlist* Lista, string BusquedaInicial, string B
     }
 
     int contadorF {0};
+
     while(current->Num1 < NumeroFinal){
         current = current->Next; 
         contadorF++; 
     }
+
     current = Lista->Head; 
     ofstream archivo(Nombre); 
     for(int i {0}; i< contadorF; i++){
         archivo<<current->RegresarTodo()<<endl; 
+        current = current->Next; 
     }
 }
+
+//O(1)
 string CrearNombre(int contador){
     string Contador {to_string(contador)};
     return "Salida"+Contador+"-Eq5";
 }
-
+//O(n)
 void EntregarDocumento(MyLinkedlist* Lista){
     ofstream archivo("bitacoraOrdenadaIp-Eq5"); 
     string linea; 
-    while(Lista->Size>0){
-        archivo<<Lista->RegresarTodo()<<endl;        
-        Lista->DeleteFirst();
+    ListaEnlazada* Current = Lista->Head; 
+    while(Current != nullptr){
+        archivo<<Current->RegresarTodo()<<endl;        
+        Current = Current->Next; 
     }
 }
-
+//O(n)
 bool Menu(MyLinkedlist* &Lista, int &contador){
     cout<<"Menu: "<<endl; 
     cout<<"1.- Busqueda"<<endl; 
@@ -69,7 +77,7 @@ bool Menu(MyLinkedlist* &Lista, int &contador){
         cin.ignore(); 
         getline(cin,BusquedaFinal);
         string Nombre;
-        Nombre = CrearNombre(contador); 
+        Nombre = CrearNombre(contador+1); 
         EntregarDocumentoBusq(Lista, BusquedaInicial, BusquedaFinal, Nombre); 
         contador++; 
         return true; 
@@ -80,5 +88,6 @@ bool Menu(MyLinkedlist* &Lista, int &contador){
     }
     else{
         cout<<"Opcion invalida"<<endl;
+        return true;
     }
 }

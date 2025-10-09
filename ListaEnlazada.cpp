@@ -22,7 +22,7 @@ void ListaEnlazada::CrearNumeros(string IP){
 
 string ListaEnlazada::RegresarTodo(){
     string espacio {" "};
-    return Mes + espacio + Dia + Hora + IP + Resto;
+    return Mes + espacio + Dia + espacio + Hora + espacio +  IP + Resto;
 }
 
 

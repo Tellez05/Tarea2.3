@@ -9,8 +9,8 @@ using namespace std;
 
 class ListaEnlazada{
     private:
-    string Mes, Dia, Hora, IP, Resto;  
     public: 
+    string Mes, Dia, Hora, IP, Resto;  
     int Num1, Num2, Num3, Num4, Puerto;
     ListaEnlazada* Next; 
     //N(1)
