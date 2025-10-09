@@ -17,7 +17,8 @@ void ListaEnlazada::CrearVariables(string linea){
 //N(1)
 void ListaEnlazada::CrearNumeros(string IP){
     stringstream ss(IP);
-    ss>>Num1>>Num2>>Num3>>Num4>>Puerto; 
+    char punto; 
+    ss>>Num1>>punto>>Num2>>punto>>Num3>>punto>>Num4>>Puerto; 
 }
 
 string ListaEnlazada::RegresarTodo(){

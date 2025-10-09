@@ -8,6 +8,7 @@ class MyLinkedlist{
     ListaEnlazada* Tail; 
     int Size {0}; 
     MyLinkedlist(); 
+    ~MyLinkedlist();
     void Mergesort(); //El primero que manda a llamar
     void Mergesort(int inicio, int final); //La recursiva
     void Mezcla(int inicio, int final, int central); 
@@ -15,4 +16,5 @@ class MyLinkedlist{
     string RegresarTodo(); 
     void DeleteFirst(); 
     bool isEmpty(); 
+    bool esMenoroIgual(ListaEnlazada* a, ListaEnlazada* b); 
 };
