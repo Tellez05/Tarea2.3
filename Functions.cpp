@@ -75,11 +75,9 @@ void EntregarDocumentoBusq(MyLinkedlist* Lista, string BusquedaInicial, string B
     final = HacerBusq(Lista, Fn1, Fn2, Fn3, Fn4, Fport);
     cout<<final<<endl;  
     int cantidad {final-inicio};
-
     for(int i {0}; i<inicio&& current != nullptr; i++){
         current = current->Next; 
     } 
-    
     for(int i {0}; i<cantidad; i++){
         archivo<<current->RegresarTodo()<<endl;
         current = current->Next; 
