@@ -7,83 +7,51 @@ void CargarDocumento(MyLinkedlist* &Lista){
     while(getline(archivo, linea)){
         Lista->Insert(linea);
     }
-
 }
+//O(1)
 void CreadorVariablesBusq(string linea, int &Num1, int & Num2, int &Num3, int &Num4, int &Puerto){
     stringstream ss(linea);
     char punto; 
     ss>>Num1>>punto>>Num2>>punto>>Num3>>punto>>Num4>>Puerto; 
-}
-//O(1)
-int SacarPrimerNumero(string linea){
-    stringstream ss(linea);
-    int numero; 
-    ss>> numero; 
-    return numero; 
+
 }
 
-bool CompararNumeros(ListaEnlazada* Lista, int Num1, int Num2, int Num3, int Num4, int Puerto ){
-    if(Lista->Num1 < Num1){
-    return true; 
-    }else if(Lista->Num1 > Num1){
-        return false; 
-    }
-
-    if(Lista->Num2 < Num2){
-        return true; 
-    }else if(Lista->Num2 > Num2){
-        return false; 
-    }
-
-    if(Lista->Num3 < Num3){
-        return true; 
-    }else if(Lista->Num3 > Num3){
-        return false; 
-    }
-
-    if(Lista->Num4 < Num4){
-        return true; 
-    }else if(Lista->Num4 > Num4){
-        return false;
-    }
-
-    if(Lista->Puerto < Puerto){
-        return true; 
-    }
-    return false; 
-}
-int HacerBusq(MyLinkedlist* Lista, int Num1, int Num2, int Num3, int Num4, int Puerto){
-    int contador {0}; 
-    ListaEnlazada* current = Lista->Head; 
-    while(current != nullptr && !CompararNumeros(current,Num1, Num2, Num3, Num4, Puerto)){
-        contador++; 
-        current = current->Next; 
-    }
-    return contador; 
-}
-//Agregar en las verificaciones los demas numeros
+//O(N)
 void EntregarDocumentoBusq(MyLinkedlist* Lista, string BusquedaInicial, string BusquedaFinal, string Nombre){
-    ofstream archivo(Nombre); 
-    ListaEnlazada* current = Lista->Head; 
-    int In1, In2, In3, In4, Iport, Fn1, Fn2, Fn3, Fn4, Fport; 
-    CreadorVariablesBusq(BusquedaInicial,In1,In2, In3, In4, Iport); 
-    CreadorVariablesBusq(BusquedaFinal, Fn1, Fn2, Fn3, Fn4, Fport);
+    ofstream archivo(Nombre);
     int inicio {0}; 
     int final {0};
-    inicio = HacerBusq(Lista, In1, In2, In3, In4, Iport); 
-    cout<<inicio<<endl; 
-    final = HacerBusq(Lista, Fn1, Fn2, Fn3, Fn4, Fport);
-    cout<<final<<endl;  
-    int cantidad {final-inicio};
-    for(int i {0}; i<inicio&& current != nullptr; i++){
-        current = current->Next; 
+    int Inum1, Inum2, Inum3, Inum4, IPort, Fnum1, Fnum2, Fnum3, Fnum4, Fport; 
+    CreadorVariablesBusq(BusquedaInicial, Inum1, Inum2, Inum3, Inum4, IPort);
+    CreadorVariablesBusq(BusquedaFinal, Fnum1, Fnum2, Fnum3, Fnum4, Fport);  
+    ListaEnlazada* Current = Lista->Head;
+    //Sacar Inicio y moverlo current hacia ese para poder 
+    while(Current != nullptr && (Current->Num1 > Inum1) ||
+            (Current->Num1 == Inum1 && Current->Num2 > Inum2) ||
+                (Current->Num1 == Inum1 && Current->Num2 == Inum2 && Current->Num3 > Inum3)||
+                    (Current->Num1 == Inum1 && Current->Num2 == Inum2 && Current->Num3 == Inum3 && Current->Num4 > Inum4)||
+                        (Current->Num1 == Inum1 && Current->Num2 == Inum2 && Current->Num3 == Inum3 && Current->Num4 == Inum4 && Current->Puerto > IPort)){
+                            inicio++; 
+                            Current = Current->Next; 
     } 
-    for(int i {0}; i<cantidad; i++){
-        archivo<<current->RegresarTodo()<<endl;
-        current = current->Next; 
+    //Sacar Final con el mismo metodo
+    ListaEnlazada* Final = Current; 
+    while(Current != nullptr && (Current->Num1 > Fnum1) ||
+            (Current->Num1 == Fnum1 && Current->Num2 > Fnum2) ||
+                (Current->Num1 == Fnum1 && Current->Num2 == Fnum2 && Current->Num3 > Fnum3)||
+                    (Current->Num1 == Fnum1 && Current->Num2 == Fnum2 && Current->Num3 == Fnum4 && Current->Num4 > Fnum4)||
+                        (Current->Num1 == Fnum1 && Current->Num2 == Fnum2 && Current->Num3 == Fnum4 && Current->Num4 == Fnum4 && Current->Puerto > Fport)){
+                            final++; 
+                            Current = Current->Next; 
+    } 
+    cout<<inicio<<" "<<final<<endl; 
+    for(int i {inicio}; i <= final; i++){
+        archivo<<Final->RegresarTodo()<<endl;
+        Final = Final->Next; 
     }
+    
+}   
 
-}
 //O(1)
 string CrearNombre(int contador){
     string Contador {to_string(contador)};
@@ -99,6 +67,7 @@ void EntregarDocumento(MyLinkedlist* Lista){
         Current = Current->Next; 
     }
 }
+
 //O(n)
 bool Menu(MyLinkedlist* &Lista, int &contador){
     cout<<"Menu: "<<endl; 
