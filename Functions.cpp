@@ -9,10 +9,18 @@ void CargarDocumento(MyLinkedlist* &Lista){
     }
 }
 //O(1)
-void CreadorVariablesBusq(string linea, int &Num1, int & Num2, int &Num3, int &Num4, int &Puerto){
+void CreadorVariablesBusqInicial(string linea, int &Num1, int & Num2, int &Num3, int &Num4, int &Puerto){
     stringstream ss(linea);
-    char punto; 
-    ss>>Num1>>punto>>Num2>>punto>>Num3>>punto>>Num4>>Puerto; 
+    char punto, dospuntos; 
+    ss>>Num1>>punto>>Num2>>punto>>Num3>>punto>>Num4>>dospuntos>>Puerto; 
+    cout<<Num1<<" "<<Num2<<" "<<Num3<<" "<<Num4<<" "<<Puerto<<endl;  
+
+}
+void CreadorVariablesBusqFinal(string linea, int &Num1, int & Num2, int &Num3, int &Num4, int &Puerto){
+    stringstream ss(linea);
+    char punto, dospuntos; 
+    ss>>Num1>>punto>>Num2>>punto>>Num3>>punto>>Num4>>dospuntos>>Puerto; 
+    cout<<Num1<<" "<<Num2<<" "<<Num3<<" "<<Num4<<" "<<Puerto<<endl;  
 
 }
 
@@ -22,30 +30,33 @@ void EntregarDocumentoBusq(MyLinkedlist* Lista, string BusquedaInicial, string B
     int inicio {0}; 
     int final {0};
     int Inum1, Inum2, Inum3, Inum4, IPort, Fnum1, Fnum2, Fnum3, Fnum4, Fport; 
-    CreadorVariablesBusq(BusquedaInicial, Inum1, Inum2, Inum3, Inum4, IPort);
-    CreadorVariablesBusq(BusquedaFinal, Fnum1, Fnum2, Fnum3, Fnum4, Fport);  
+    CreadorVariablesBusqInicial(BusquedaInicial, Inum1, Inum2, Inum3, Inum4, IPort);
+    CreadorVariablesBusqFinal(BusquedaFinal, Fnum1, Fnum2, Fnum3, Fnum4, Fport);  
     ListaEnlazada* Current = Lista->Head;
     //Sacar Inicio y moverlo current hacia ese para poder 
-    while(Current != nullptr && (Current->Num1 > Inum1) ||
-            (Current->Num1 == Inum1 && Current->Num2 > Inum2) ||
-                (Current->Num1 == Inum1 && Current->Num2 == Inum2 && Current->Num3 > Inum3)||
-                    (Current->Num1 == Inum1 && Current->Num2 == Inum2 && Current->Num3 == Inum3 && Current->Num4 > Inum4)||
-                        (Current->Num1 == Inum1 && Current->Num2 == Inum2 && Current->Num3 == Inum3 && Current->Num4 == Inum4 && Current->Puerto > IPort)){
+    while(Current != nullptr && (
+        (Current->Num1 < Inum1) ||
+            (Current->Num1 == Inum1 && Current->Num2 < Inum2) ||
+                (Current->Num1 == Inum1 && Current->Num2 == Inum2 && Current->Num3 < Inum3)||
+                    (Current->Num1 == Inum1 && Current->Num2 == Inum2 && Current->Num3 == Inum3 && Current->Num4 < Inum4)||
+                        (Current->Num1 == Inum1 && Current->Num2 == Inum2 && Current->Num3 == Inum3 && Current->Num4 == Inum4 && Current->Puerto < IPort))){
                             inicio++; 
                             Current = Current->Next; 
     } 
     //Sacar Final con el mismo metodo
     ListaEnlazada* Final = Current; 
-    while(Current != nullptr && (Current->Num1 > Fnum1) ||
-            (Current->Num1 == Fnum1 && Current->Num2 > Fnum2) ||
-                (Current->Num1 == Fnum1 && Current->Num2 == Fnum2 && Current->Num3 > Fnum3)||
-                    (Current->Num1 == Fnum1 && Current->Num2 == Fnum2 && Current->Num3 == Fnum4 && Current->Num4 > Fnum4)||
-                        (Current->Num1 == Fnum1 && Current->Num2 == Fnum2 && Current->Num3 == Fnum4 && Current->Num4 == Fnum4 && Current->Puerto > Fport)){
+    while(Current != nullptr && (
+        (Current->Num1 < Fnum1) ||
+            (Current->Num1 == Fnum1 && Current->Num2 < Fnum2) ||
+                (Current->Num1 == Fnum1 && Current->Num2 == Fnum2 && Current->Num3 < Fnum3)||
+                    (Current->Num1 == Fnum1 && Current->Num2 == Fnum2 && Current->Num3 == Fnum3 && Current->Num4 < Fnum4)||
+                        (Current->Num1 == Fnum1 && Current->Num2 == Fnum2 && Current->Num3 == Fnum3 && Current->Num4 == Fnum4 && Current->Puerto < Fport))){
                             final++; 
                             Current = Current->Next; 
     } 
-    cout<<inicio<<" "<<final<<endl; 
-    for(int i {inicio}; i <= final; i++){
+    cout<<inicio<<" "<<final<<endl;
+    int contador {inicio+final}; 
+    for(int i {0}; i < final -1; i++){
         archivo<<Final->RegresarTodo()<<endl;
         Final = Final->Next; 
     }
@@ -82,7 +93,6 @@ bool Menu(MyLinkedlist* &Lista, int &contador){
         cin.ignore(); 
         getline(cin,BusquedaInicial);
         cout<<"Dame el IP final: "; 
-        cin.ignore(); 
         getline(cin,BusquedaFinal);
         string Nombre;
         Nombre = CrearNombre(contador+1); 
