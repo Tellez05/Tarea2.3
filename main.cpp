@@ -5,12 +5,12 @@
 int main(){
     int contador {0}; 
     MyLinkedlist* Lista = new MyLinkedlist();
-    CargarDocumento(Lista);
-    Lista->Mergesort();  
-    EntregarDocumento(Lista); 
+    cargarDocumento(Lista);
+    Lista->mergeSort();  
+    entregarDocumento(Lista); 
     bool V {true};
     while(V == true){
-        V = Menu(Lista, contador);
+        V = menu(Lista, contador);
     }
     return 0; 
 }

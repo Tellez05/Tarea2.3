@@ -1,34 +1,34 @@
 #include "MyLinkedlist.h"
 //N(1)
 MyLinkedlist::~MyLinkedlist(){
-    while(Head != nullptr){
-        DeleteFirst(); 
+    while(head != nullptr){
+        deleteFirst(); 
     }
 }
 
 MyLinkedlist::MyLinkedlist(){
-    this->Head=this->Tail = nullptr; 
+    this->head=this->tail = nullptr; 
 }
 //N(1)
-void MyLinkedlist::DeleteFirst(){
-    ListaEnlazada* temp = Head;
-    this->Head = this->Head->Next;  
+void MyLinkedlist::deleteFirst(){
+    ListaEnlazada* temp = head;
+    this->head = this->head->Next;  
     delete temp; 
     Size--; 
 }
 
-string MyLinkedlist::RegresarTodo(){
-    return Head->RegresarTodo(); 
+string MyLinkedlist::regresarTodo(){
+    return head->RegresarTodo(); 
 }
 //N(1)
 
-void MyLinkedlist::Insert(string linea){
+void MyLinkedlist::insert(string linea){
     ListaEnlazada* nuevo = new ListaEnlazada(linea);
-    if (Head == nullptr) {
-        Head = Tail = nuevo;
+    if (head == nullptr) {
+        head = tail = nuevo;
     } else {
-        Tail->Next = nuevo;
-        Tail = nuevo;
+        tail->Next = nuevo;
+        tail = nuevo;
     }
     Size++;
 }
@@ -76,13 +76,13 @@ bool MyLinkedlist::esMenoroIgual(ListaEnlazada* A, ListaEnlazada* B){
     return false; 
 }
 
-void MyLinkedlist::Mezcla(int inicio, int final, int central){
+void MyLinkedlist::mezcla(int inicio, int final, int central){
     MyLinkedlist* NuevaListaizquierda = new MyLinkedlist;
     MyLinkedlist* NuevaListaderecha = new MyLinkedlist;
     MyLinkedlist* NuevaListaFinal = new MyLinkedlist;
 
     int contador {0};
-    ListaEnlazada* current = this->Head; 
+    ListaEnlazada* current = this->head; 
 
     while(contador < inicio){
         current = current->Next; 
@@ -91,39 +91,39 @@ void MyLinkedlist::Mezcla(int inicio, int final, int central){
     ListaEnlazada* current2 = current; 
     
     while(contador <= central){
-        NuevaListaizquierda->Insert(current->RegresarTodo());
+        NuevaListaizquierda->insert(current->RegresarTodo());
         current = current->Next; 
         contador++; 
     }
 
     while(contador <= final){
-        NuevaListaderecha->Insert(current->RegresarTodo());
+        NuevaListaderecha->insert(current->RegresarTodo());
         current = current->Next; 
         contador++;
     }
 
     //Hacer comparacion
     while(!NuevaListaderecha->isEmpty() && !NuevaListaizquierda->isEmpty()){
-        if(esMenoroIgual(NuevaListaderecha->Head, NuevaListaizquierda->Head)){
-            NuevaListaFinal->Insert(NuevaListaderecha->Head->RegresarTodo());
-            NuevaListaderecha->DeleteFirst();
+        if(esMenoroIgual(NuevaListaderecha->head, NuevaListaizquierda->head)){
+            NuevaListaFinal->insert(NuevaListaderecha->head->RegresarTodo());
+            NuevaListaderecha->deleteFirst();
         }else{
-            NuevaListaFinal->Insert(NuevaListaizquierda->Head->RegresarTodo());
-            NuevaListaizquierda->DeleteFirst(); 
+            NuevaListaFinal->insert(NuevaListaizquierda->head->RegresarTodo());
+            NuevaListaizquierda->deleteFirst(); 
         }
     }
 
     while(!NuevaListaderecha->isEmpty()){
-        NuevaListaFinal->Insert(NuevaListaderecha->Head->RegresarTodo());
-        NuevaListaderecha->DeleteFirst();  
+        NuevaListaFinal->insert(NuevaListaderecha->head->RegresarTodo());
+        NuevaListaderecha->deleteFirst();  
     }
 
     while(!NuevaListaizquierda->isEmpty()){
-        NuevaListaFinal->Insert(NuevaListaizquierda->Head->RegresarTodo());
-        NuevaListaizquierda->DeleteFirst();  
+        NuevaListaFinal->insert(NuevaListaizquierda->head->RegresarTodo());
+        NuevaListaizquierda->deleteFirst();  
     }
     
-    ListaEnlazada* current3 = NuevaListaFinal->Head; 
+    ListaEnlazada* current3 = NuevaListaFinal->head; 
     //Pasar todos los datos
     for(int i {inicio}; i <= final; i++){
         current2->Num1 = current3->Num1;
@@ -147,15 +147,15 @@ void MyLinkedlist::Mezcla(int inicio, int final, int central){
 
 
 
-void MyLinkedlist::Mergesort(){
-    Mergesort(0, this->Size-1); 
+void MyLinkedlist::mergeSort(){
+    mergeSort(0, this->Size-1); 
 }
 
-void MyLinkedlist::Mergesort(int inicio, int final){
+void MyLinkedlist::mergeSort(int inicio, int final){
     if(inicio<final){
         int central {(inicio+final)/2}; 
-        Mergesort(inicio, central);
-        Mergesort(central+1, final);
-        Mezcla(inicio,final,central); 
+        mergeSort(inicio, central);
+        mergeSort(central+1, final);
+        mezcla(inicio,final,central); 
     }
 }

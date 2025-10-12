@@ -1,22 +1,22 @@
 #include "Functions.h"
 
 //O(n)
-void CargarDocumento(MyLinkedlist* &Lista){
+void cargarDocumento(MyLinkedlist* &Lista){
     ifstream archivo("bitacora.txt"); 
     string linea; 
     while(getline(archivo, linea)){
-        Lista->Insert(linea);
+        Lista->insert(linea);
     }
 }
 //O(1)
-void CreadorVariablesBusqInicial(string linea, int &Num1, int & Num2, int &Num3, int &Num4, int &Puerto){
+void creadorVariablesBusqInicial(string linea, int &Num1, int & Num2, int &Num3, int &Num4, int &Puerto){
     stringstream ss(linea);
     char punto, dospuntos; 
     ss>>Num1>>punto>>Num2>>punto>>Num3>>punto>>Num4>>dospuntos>>Puerto; 
     cout<<Num1<<" "<<Num2<<" "<<Num3<<" "<<Num4<<" "<<Puerto<<endl;  
 
 }
-void CreadorVariablesBusqFinal(string linea, int &Num1, int & Num2, int &Num3, int &Num4, int &Puerto){
+void creadorVariablesBusqFinal(string linea, int &Num1, int & Num2, int &Num3, int &Num4, int &Puerto){
     stringstream ss(linea);
     char punto, dospuntos; 
     ss>>Num1>>punto>>Num2>>punto>>Num3>>punto>>Num4>>dospuntos>>Puerto; 
@@ -25,14 +25,14 @@ void CreadorVariablesBusqFinal(string linea, int &Num1, int & Num2, int &Num3, i
 }
 
 //O(N)
-void EntregarDocumentoBusq(MyLinkedlist* Lista, string BusquedaInicial, string BusquedaFinal, string Nombre){
+void entregarDocumentoBusq(MyLinkedlist* Lista, string BusquedaInicial, string BusquedaFinal, string Nombre){
     ofstream archivo(Nombre);
     int inicio {0}; 
     int final {0};
     int Inum1, Inum2, Inum3, Inum4, IPort, Fnum1, Fnum2, Fnum3, Fnum4, Fport; 
-    CreadorVariablesBusqInicial(BusquedaInicial, Inum1, Inum2, Inum3, Inum4, IPort);
-    CreadorVariablesBusqFinal(BusquedaFinal, Fnum1, Fnum2, Fnum3, Fnum4, Fport);  
-    ListaEnlazada* Current = Lista->Head;
+    creadorVariablesBusqInicial(BusquedaInicial, Inum1, Inum2, Inum3, Inum4, IPort);
+    creadorVariablesBusqFinal(BusquedaFinal, Fnum1, Fnum2, Fnum3, Fnum4, Fport);  
+    ListaEnlazada* Current = Lista->head;
     //Sacar Inicio y moverlo current hacia ese para poder 
     while(Current != nullptr && (
         (Current->Num1 < Inum1) ||
@@ -56,7 +56,7 @@ void EntregarDocumentoBusq(MyLinkedlist* Lista, string BusquedaInicial, string B
     } 
     cout<<inicio<<" "<<final<<endl;
     int contador {inicio+final}; 
-    for(int i {0}; i < final -1; i++){
+    for(int i {0}; i < final; i++){
         archivo<<Final->RegresarTodo()<<endl;
         Final = Final->Next; 
     }
@@ -64,15 +64,15 @@ void EntregarDocumentoBusq(MyLinkedlist* Lista, string BusquedaInicial, string B
 }   
 
 //O(1)
-string CrearNombre(int contador){
+string crearNombre(int contador){
     string Contador {to_string(contador)};
     return "Salida"+Contador+"-Eq5";
 }
 //O(n)
-void EntregarDocumento(MyLinkedlist* Lista){
+void entregarDocumento(MyLinkedlist* Lista){
     ofstream archivo("bitacoraOrdenadaIp-Eq5"); 
     string linea; 
-    ListaEnlazada* Current = Lista->Head; 
+    ListaEnlazada* Current = Lista->head; 
     while(Current != nullptr){
         archivo<<Current->RegresarTodo()<<endl;        
         Current = Current->Next; 
@@ -80,7 +80,7 @@ void EntregarDocumento(MyLinkedlist* Lista){
 }
 
 //O(n)
-bool Menu(MyLinkedlist* &Lista, int &contador){
+bool menu(MyLinkedlist* &Lista, int &contador){
     cout<<"Menu: "<<endl; 
     cout<<"1.- Busqueda"<<endl; 
     cout<<"2.- Salir"<<endl; 
@@ -95,8 +95,8 @@ bool Menu(MyLinkedlist* &Lista, int &contador){
         cout<<"Dame el IP final: "; 
         getline(cin,BusquedaFinal);
         string Nombre;
-        Nombre = CrearNombre(contador+1); 
-        EntregarDocumentoBusq(Lista, BusquedaInicial, BusquedaFinal, Nombre); 
+        Nombre = crearNombre(contador+1); 
+        entregarDocumentoBusq(Lista, BusquedaInicial, BusquedaFinal, Nombre); 
         contador++; 
         return true; 
     }  

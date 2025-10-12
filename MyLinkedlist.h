@@ -4,17 +4,17 @@
 class MyLinkedlist{
     private: 
     public: 
-    ListaEnlazada* Head; 
-    ListaEnlazada* Tail; 
+    ListaEnlazada* head; 
+    ListaEnlazada* tail; 
     int Size {0}; 
     MyLinkedlist(); 
     ~MyLinkedlist();
-    void Mergesort(); //El primero que manda a llamar
-    void Mergesort(int inicio, int final); //La recursiva
-    void Mezcla(int inicio, int final, int central); 
-    void Insert(string linea);
-    string RegresarTodo(); 
-    void DeleteFirst(); 
+    void mergeSort(); //El primero que manda a llamar
+    void mergeSort(int inicio, int final); //La recursiva
+    void mezcla(int inicio, int final, int central); 
+    void insert(string linea);
+    string regresarTodo(); 
+    void deleteFirst(); 
     bool isEmpty(); 
     bool esMenoroIgual(ListaEnlazada* a, ListaEnlazada* b); 
 };
