@@ -13,15 +13,13 @@ void creadorVariablesBusqInicial(string linea, int &Num1, int & Num2, int &Num3,
     stringstream ss(linea);
     char punto, dospuntos; 
     ss>>Num1>>punto>>Num2>>punto>>Num3>>punto>>Num4>>dospuntos>>Puerto; 
-    cout<<Num1<<" "<<Num2<<" "<<Num3<<" "<<Num4<<" "<<Puerto<<endl;  
+
 
 }
 void creadorVariablesBusqFinal(string linea, int &Num1, int & Num2, int &Num3, int &Num4, int &Puerto){
     stringstream ss(linea);
     char punto, dospuntos; 
     ss>>Num1>>punto>>Num2>>punto>>Num3>>punto>>Num4>>dospuntos>>Puerto; 
-    cout<<Num1<<" "<<Num2<<" "<<Num3<<" "<<Num4<<" "<<Puerto<<endl;  
-
 }
 
 //O(N)
@@ -54,7 +52,6 @@ void entregarDocumentoBusq(MyLinkedlist* Lista, string BusquedaInicial, string B
                             final++; 
                             Current = Current->Next; 
     } 
-    cout<<inicio<<" "<<final<<endl;
     int contador {inicio+final}; 
     for(int i {0}; i < final; i++){
         archivo<<Final->RegresarTodo()<<endl;
