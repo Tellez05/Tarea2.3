@@ -27,5 +27,6 @@ class MyBST{
     public: 
     void insert(string linea, int contador); 
     MyBST(); 
-
+    void inorder(int &num);
+    void inorder(MyNodeBST* current, int &num); 
 };

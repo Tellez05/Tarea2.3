@@ -82,21 +82,23 @@ void entregarDocumento(MyLinkedlist* Lista, MyBST* BST){
     int contador {1}; 
     ListaEnlazada* Current = Lista->head; 
     bool Ver {false};
-    while(Current != nullptr){
-        if(Current->Next == nullptr){
+    while (Current != nullptr) {
+        if (Current->Next == nullptr) {
             BST->insert(extraerIP(Current->RegresarTodo()), contador);
             break;
         }
-        if(extraerIP(Current->RegresarTodo()) == extraerIP(Current->Next->RegresarTodo())){
-            contador++; 
+        else if (extraerIP(Current->RegresarTodo()) == extraerIP(Current->Next->RegresarTodo())) {
+            contador++;
         }
-        if(extraerIP(Current->RegresarTodo()) != extraerIP(Current->Next->RegresarTodo()) ){
-            BST->insert(extraerIP(Current->RegresarTodo()),contador);
-            contador = 1;  
+        else {
+            BST->insert(extraerIP(Current->RegresarTodo()), contador);
+            contador = 1;
         }
-        archivo<<Current->RegresarTodo()<<endl;        
-        Current = Current->Next; 
+
+        archivo << Current->RegresarTodo() << endl;
+        Current = Current->Next;
     }
+
     archivo.close(); 
 }
 

@@ -16,11 +16,9 @@ int main(){
     MyBST* BST = new MyBST(); 
     cargarDocumento(Lista);
     Lista->mergeSort();  
-    entregarDocumento(Lista); 
-
-    bool V {true};
-    while(V == true){
-        V = menu(Lista, contador);
-    }
-    return 0; 
+    entregarDocumento(Lista, BST);  
+    int N {0};
+    cout<<"Cuantas IPs quieres ver: "; 
+    cin>>N; 
+    BST->inorder(N);
 }
