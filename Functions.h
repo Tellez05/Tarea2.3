@@ -7,11 +7,11 @@ Tarea 2.3
 */
 #pragma once
 #include "MyLinkedlist.h"
-
+#include "MyBST.h"
 //O(n)
 void cargarDocumento(MyLinkedlist* &Lista);
 //O(n)
-void entregarDocumento(MyLinkedlist* Lista);
+void entregarDocumento(MyLinkedlist* Lista, MyBST* BST);
 //O(n)
 void entregarDocumentoBusq(MyLinkedlist* Lista,string BusquedaInicial, string BusquedaFinal, string nombre);
 //O(n)
@@ -22,3 +22,5 @@ string crearNombre(int contador);
 void creadorVariablesBusqInicial(string linea, int &Num1, int & Num2, int &Num3, int &Num4, int &Puerto);
 //O(1)
 void creadorVariablesBusqFinal(string linea, int &Num1, int & Num2, int &Num3, int &Num4, int &Puerto);
+//O(1)
+string extraerIP(string linea); 

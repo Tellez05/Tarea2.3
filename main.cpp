@@ -8,13 +8,16 @@ Tarea 2.3
 #include "ListaEnlazada.h"
 #include "MyLinkedlist.h"
 #include "Functions.h"
+#include "MyBST.h"
 
 int main(){
     int contador {0}; 
     MyLinkedlist* Lista = new MyLinkedlist();
+    MyBST* BST = new MyBST(); 
     cargarDocumento(Lista);
     Lista->mergeSort();  
     entregarDocumento(Lista); 
+
     bool V {true};
     while(V == true){
         V = menu(Lista, contador);

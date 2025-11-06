@@ -76,11 +76,25 @@ string crearNombre(int contador){
     return "Salida"+Contador+"-Eq5.txt";
 }
 //O(n)
-void entregarDocumento(MyLinkedlist* Lista){
+void entregarDocumento(MyLinkedlist* Lista, MyBST* BST){
     ofstream archivo("bitacoraOrdenadaIp-Eq5.txt"); 
-    string linea; 
+    string linea;
+    int contador {1}; 
     ListaEnlazada* Current = Lista->head; 
+    bool Ver {false};
     while(Current != nullptr){
+        if(Current->Next == nullptr){
+            BST->insert(extraerIP(Current->RegresarTodo()), contador);
+            break;
+        }
+        if(extraerIP(Current->RegresarTodo()) == extraerIP(Current->Next->RegresarTodo())){
+            contador++; 
+        }
+        if(extraerIP(Current->RegresarTodo()) != extraerIP(Current->Next->RegresarTodo()) ){
+            BST->insert(extraerIP(Current->RegresarTodo()),contador);
+
+            contador = 1;  
+        }
         archivo<<Current->RegresarTodo()<<endl;        
         Current = Current->Next; 
     }
@@ -116,4 +130,14 @@ bool menu(MyLinkedlist* &Lista, int &contador){
         cout<<"Opcion invalida"<<endl;
         return true;
     }
+}
+
+
+string extraerIP(string linea){
+    stringstream ss(linea);
+    char punto, dospuntos;
+    string Num1, Num2, Num3, Num4; 
+    ss>>Num1>>punto>>Num2>>punto>>Num3>>punto>>Num4>>dospuntos;
+    string IP {Num1 + punto + Num2 + punto + Num3 + punto + Num4}; 
+    return IP; 
 }
