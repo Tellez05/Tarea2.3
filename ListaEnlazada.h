@@ -1,3 +1,10 @@
+/*
+Andres Tellez Bermudez Matricula: A01640907
+Luis Eduardo Michel    Matricula: A01641578
+Jared Rafael Garcia    Matricula: A01640914
+Fecha: 13/10/2025
+Tarea 2.3
+*/
 #pragma once 
 
 #include <iostream>
@@ -13,15 +20,15 @@ class ListaEnlazada{
     string Mes, Dia, Hora, IP, Resto;  
     int Num1, Num2, Num3, Num4, Puerto;
     ListaEnlazada* Next; 
-    //N(1)
+    //O(1)
     ListaEnlazada(string Lista, ListaEnlazada* next);
-    //N(1)
+    //O(1)
     ListaEnlazada(string Lista):ListaEnlazada(Lista, nullptr){}
-    //N(1)
+    //O(1)
     void CrearVariables(string linea);
-    //N(1)
+    //O(1)
     void CrearNumeros(string linea); 
-    //N(1)
+    //O(1)
     string RegresarTodo(); 
 };
 
