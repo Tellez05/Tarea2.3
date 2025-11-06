@@ -92,7 +92,6 @@ void entregarDocumento(MyLinkedlist* Lista, MyBST* BST){
         }
         if(extraerIP(Current->RegresarTodo()) != extraerIP(Current->Next->RegresarTodo()) ){
             BST->insert(extraerIP(Current->RegresarTodo()),contador);
-
             contador = 1;  
         }
         archivo<<Current->RegresarTodo()<<endl;        
