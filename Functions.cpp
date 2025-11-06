@@ -94,12 +94,11 @@ void entregarDocumento(MyLinkedlist* Lista, MyBST* BST){
             BST->insert(extraerIP(Current->RegresarTodo()), contador);
             contador = 1;
         }
-
         archivo << Current->RegresarTodo() << endl;
         Current = Current->Next;
     }
-
     archivo.close(); 
+
 }
 
 //O(n)
@@ -136,9 +135,17 @@ bool menu(MyLinkedlist* &Lista, int &contador){
 
 string extraerIP(string linea){
     stringstream ss(linea);
+    string basura1, basura2, basura3; 
     char punto, dospuntos;
     string Num1, Num2, Num3, Num4; 
-    ss>>Num1>>punto>>Num2>>punto>>Num3>>punto>>Num4>>dospuntos;
-    string IP {Num1 + punto + Num2 + punto + Num3 + punto + Num4}; 
+
+    // Ignorar fecha y hora
+    ss >> basura1 >> basura2 >> basura3;
+
+    // Ahora leer la IP con tu mismo formato
+    ss >> Num1 >> punto >> Num2 >> punto >> Num3 >> punto >> Num4 >> dospuntos;
+
+    string IP = Num1 + punto + Num2 + punto + Num3 + punto + Num4; 
     return IP; 
 }
+
