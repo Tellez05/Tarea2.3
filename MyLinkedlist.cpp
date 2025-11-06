@@ -1,11 +1,19 @@
+/*
+Andres Tellez Bermudez Matricula: A01640907
+Luis Eduardo Michel    Matricula: A01641578
+Jared Rafael Garcia    Matricula: A01640914
+Fecha: 13/10/2025
+Tarea 2.3*/
+
 #include "MyLinkedlist.h"
-//N(1)
+
+//O(n)
 MyLinkedlist::~MyLinkedlist(){
     while(head != nullptr){
         deleteFirst(); 
     }
 }
-
+//O(1)
 MyLinkedlist::MyLinkedlist(){
     this->head=this->tail = nullptr; 
 }
@@ -17,11 +25,11 @@ void MyLinkedlist::deleteFirst(){
     Size--; 
 }
 
+//O(1)
 string MyLinkedlist::regresarTodo(){
     return head->RegresarTodo(); 
 }
-//N(1)
-
+//O(1)
 void MyLinkedlist::insert(string linea){
     ListaEnlazada* nuevo = new ListaEnlazada(linea);
     if (head == nullptr) {
@@ -32,7 +40,7 @@ void MyLinkedlist::insert(string linea){
     }
     Size++;
 }
-
+//O(1)
 bool MyLinkedlist::isEmpty(){
     if(Size == 0){
         return true; 
@@ -75,7 +83,7 @@ bool MyLinkedlist::esMenoroIgual(ListaEnlazada* A, ListaEnlazada* B){
 
     return false; 
 }
-
+//O(n)
 void MyLinkedlist::mezcla(int inicio, int final, int central){
     MyLinkedlist* NuevaListaizquierda = new MyLinkedlist;
     MyLinkedlist* NuevaListaderecha = new MyLinkedlist;
@@ -146,11 +154,11 @@ void MyLinkedlist::mezcla(int inicio, int final, int central){
 }
 
 
-
+//O(1) - Solo inicia la recursion 
 void MyLinkedlist::mergeSort(){
     mergeSort(0, this->Size-1); 
 }
-
+//O(n log n) - Esta divide recursivamente la lista y hace la mezcla
 void MyLinkedlist::mergeSort(int inicio, int final){
     if(inicio<final){
         int central {(inicio+final)/2}; 
