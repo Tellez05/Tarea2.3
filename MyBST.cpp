@@ -57,8 +57,6 @@ void MyBST::inorder(MyNodeBST *current, int &num){
         num--; 
         cout<<"Numero de IP: "<<current->IP<<" Total de accesos: "<<current->repeticiones<<endl; 
     }
-
-
     if(current->right != nullptr){
         inorder(current->right, num);
     }
