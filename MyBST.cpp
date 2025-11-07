@@ -28,6 +28,7 @@ void MyBST::insert(string linea, int contador){
         }else if(current->repeticiones == contador){
             if(current->right == nullptr){
                 current->right = new MyNodeBST(linea, contador);
+                return; 
             }
             current = current->right; 
         }
@@ -52,8 +53,12 @@ void MyBST::inorder(MyNodeBST *current, int &num){
     if(current->left != nullptr){
         inorder(current->left, num);
     }
-    cout<<"Numero de IP: "<<current->IP<<" Total de accesos: "<<current->repeticiones<<endl; 
-    num--; 
+    if(num > 0){
+        num--; 
+        cout<<"Numero de IP: "<<current->IP<<" Total de accesos: "<<current->repeticiones<<endl; 
+    }
+
+
     if(current->right != nullptr){
         inorder(current->right, num);
     }

@@ -12,15 +12,11 @@ Tarea 2.3
 void cargarDocumento(MyLinkedlist* &Lista);
 //O(n)
 void entregarDocumento(MyLinkedlist* Lista, MyBST* BST);
-//O(n)
-void entregarDocumentoBusq(MyLinkedlist* Lista,string BusquedaInicial, string BusquedaFinal, string nombre);
-//O(n)
-bool menu(MyLinkedlist* &Lista, int &contador); 
+
 //O(1)
 string crearNombre(int contador);  
 //O(1)
-void creadorVariablesBusqInicial(string linea, int &Num1, int & Num2, int &Num3, int &Num4, int &Puerto);
-//O(1)
-void creadorVariablesBusqFinal(string linea, int &Num1, int & Num2, int &Num3, int &Num4, int &Puerto);
-//O(1)
+
 string extraerIP(string linea); 
+
+string crearIP(string linea);
